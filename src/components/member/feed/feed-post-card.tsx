@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 
 interface FeedPostCardProps {
   post: {
@@ -52,8 +53,13 @@ export function FeedPostCard({ post }: FeedPostCardProps) {
       <CardContent className="p-4 pt-2">
         <p className="text-sm mb-4 leading-relaxed">{post.content}</p>
         {post.image && (
-          <div className="rounded-xl overflow-hidden mb-4 border bg-muted">
-            <img src={post.image} alt="Post content" className="w-full h-auto object-cover" />
+          <div className="relative rounded-xl overflow-hidden mb-4 border bg-muted aspect-video">
+            <Image 
+              src={post.image} 
+              alt="Post content" 
+              fill
+              className="object-cover" 
+            />
           </div>
         )}
         <div className="flex flex-wrap gap-2">

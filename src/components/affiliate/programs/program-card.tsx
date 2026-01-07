@@ -3,13 +3,12 @@
 import { 
   Star, 
   ArrowUpRight, 
-  DollarSign, 
-  Calendar,
   MoreVertical,
-  ChevronRight,
   Zap,
-  ArrowRight,
   ShieldCheck,
+  Calendar,
+  ChevronRight,
+  ArrowRight
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"

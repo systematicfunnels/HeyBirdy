@@ -7,7 +7,8 @@ interface BaseLayoutProps {
   sidebar: React.ReactNode
 }
 
-export function BaseLayout({ user, children, header, sidebar }: BaseLayoutProps) {
+export function BaseLayout({ user: _user, children, header, sidebar }: BaseLayoutProps) {
+  void _user;
   return (
     <div className="min-h-screen flex flex-col bg-slate-50/50">
       {header}

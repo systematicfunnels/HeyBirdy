@@ -58,7 +58,8 @@ export async function POST(request: Request) {
     });
 
     // Remove password from user object
-    const { password: _, ...userWithoutPassword } = user;
+    const { password: _password, ...userWithoutPassword } = user;
+    void _password; // Silence unused var warning
 
     return NextResponse.json({
       user: userWithoutPassword,

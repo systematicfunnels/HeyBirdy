@@ -1,4 +1,3 @@
-import { redirect } from 'next/navigation' 
 import { cookies } from 'next/headers'
 import { CreatorLayout } from '@/components/layout/creator-layout' 
 import { verifyJWT } from '@/lib/auth/session'

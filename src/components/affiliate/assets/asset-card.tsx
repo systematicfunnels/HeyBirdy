@@ -2,6 +2,7 @@ import { Download, ExternalLink, Layout, Copy } from "lucide-react"
 import { Card, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 
 export interface Asset {
   id: string
@@ -21,9 +22,10 @@ export function AssetCard({ asset }: AssetCardProps) {
   return (
     <Card className="overflow-hidden group hover:shadow-xl hover:border-primary/20 transition-all duration-300 border-slate-200/60 flex flex-col h-full">
       <div className="aspect-[4/3] w-full bg-slate-100 relative overflow-hidden">
-        <img 
+        <Image 
           src={asset.image} 
           alt={asset.name} 
+          fill
           className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700" 
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 gap-2">

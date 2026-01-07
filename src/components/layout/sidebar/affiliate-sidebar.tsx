@@ -1,17 +1,14 @@
 import { 
   LayoutDashboard, 
-  Target, 
   Users, 
   Settings, 
   BarChart3, 
   Link as LinkIcon,
-  ShoppingBag,
   DollarSign,
   Briefcase,
   Share2,
   TrendingUp,
   MessageSquare,
-  Palette
 } from 'lucide-react'
 import { ROUTES } from '@/lib/constants/routes'
 import { SidebarItemProps } from './sidebar-item'

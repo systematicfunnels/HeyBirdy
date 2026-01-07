@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Star } from "lucide-react"
+import Image from "next/image"
 
 export interface RecommendedProgram {
   name: string
@@ -23,9 +24,10 @@ export function RecommendedProgramCard({ program }: RecommendedProgramCardProps)
     <Card className="group border-none shadow-[0_32px_64px_-15px_rgba(0,0,0,0.08)] bg-white hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.12)] transition-all duration-700 rounded-[2.5rem] overflow-hidden">
       <CardContent className="p-0">
         <div className="relative h-56 overflow-hidden">
-          <img 
+          <Image 
             src={program.image} 
             alt={program.name}
+            fill
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-80" />

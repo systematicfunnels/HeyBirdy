@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { email, password, name } = body;
+    const { email, name } = body;
 
     // In a real app, you would:
     // 1. Validate inputs

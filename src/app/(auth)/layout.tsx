@@ -1,8 +1,9 @@
 "use client"
 
-import { Zap, Target, Award, Users } from "lucide-react"
+import { Zap, Target, Users } from "lucide-react"
 import Link from "next/link"
 import { ROUTES } from "@/lib/constants/routes"
+import Image from "next/image"
 
 export default function AuthLayout({
   children,
@@ -50,8 +51,8 @@ export default function AuthLayout({
         <div className="relative z-10 pt-12 border-t border-white/10 flex items-center justify-between">
           <div className="flex -space-x-3">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="h-10 w-10 rounded-full border-2 border-slate-900 overflow-hidden">
-                <img src={`https://i.pravatar.cc/100?u=user${i}`} alt="User" />
+              <div key={i} className="relative h-10 w-10 rounded-full border-2 border-slate-900 overflow-hidden">
+                <Image src={`https://i.pravatar.cc/100?u=user${i}`} alt="User" fill className="object-cover" />
               </div>
             ))}
             <div className="h-10 w-10 rounded-full border-2 border-slate-900 bg-primary flex items-center justify-center text-[10px] font-black">

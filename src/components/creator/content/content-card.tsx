@@ -21,6 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
+import Image from "next/image"
 
 export interface CreatorContentItem {
   id: string
@@ -45,9 +46,10 @@ export function ContentCard({ item }: ContentCardProps) {
       <CardContent className="p-0">
         <div className="flex flex-col sm:flex-row">
           <div className="relative w-full sm:w-72 h-64 sm:h-auto overflow-hidden">
-            <img 
+            <Image 
               src={item.thumbnail} 
               alt={item.title}
+              fill
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700" />

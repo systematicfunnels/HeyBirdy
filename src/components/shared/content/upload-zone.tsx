@@ -42,10 +42,10 @@ export function UploadZone({ onUploadComplete, maxSize = 10, accept = 'image/*' 
       return
     }
     setFile(selectedFile)
-    startUpload(selectedFile)
+    startUpload()
   }
 
-  const startUpload = async (_file: File) => {
+  const startUpload = async () => {
     setStatus('uploading')
     setProgress(0)
     

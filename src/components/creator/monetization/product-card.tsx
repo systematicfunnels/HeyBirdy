@@ -17,6 +17,7 @@ import {
   DropdownMenuItem, 
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu"
+import Image from "next/image"
 
 export interface CreatorProduct {
   id: string | number
@@ -39,10 +40,11 @@ export function ProductCard({ product }: ProductCardProps) {
     <Card className="border-none shadow-sm hover:shadow-2xl transition-all duration-500 rounded-[2.5rem] bg-white group overflow-hidden">
       <CardContent className="p-0">
         <div className="flex flex-col sm:flex-row">
-          <div className="sm:w-48 h-48 sm:h-auto relative overflow-hidden">
-            <img 
+          <div className="relative sm:w-48 h-48 sm:h-auto overflow-hidden">
+            <Image 
               src={product.image} 
               alt={product.name}
+              fill
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
             <div className="absolute top-4 left-4">

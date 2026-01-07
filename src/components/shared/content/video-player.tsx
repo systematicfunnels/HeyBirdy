@@ -14,7 +14,7 @@ interface VideoPlayerProps {
   className?: string
 }
 
-export function VideoPlayer({ src: _src, poster, title, className }: VideoPlayerProps) {
+export function VideoPlayer({ poster, title, className }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = React.useState(false)
   const [progress] = React.useState(33) // Mock progress
 

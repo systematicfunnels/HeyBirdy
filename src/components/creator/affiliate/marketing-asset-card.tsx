@@ -1,6 +1,7 @@
 import { Download, Copy } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 
 export interface MarketingAsset {
   id: string
@@ -18,8 +19,13 @@ interface MarketingAssetCardProps {
 export function MarketingAssetCard({ asset }: MarketingAssetCardProps) {
   return (
     <div className="group relative rounded-[2rem] border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-500 bg-white">
-      <div className="aspect-[16/9] overflow-hidden bg-slate-100">
-        <img src={asset.preview} alt={asset.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+      <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
+        <Image 
+          src={asset.preview} 
+          alt={asset.name} 
+          fill
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+        />
         <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
           <Button size="icon" className="h-10 w-10 rounded-xl bg-white text-slate-900 hover:bg-slate-100 shadow-xl">
             <Download className="h-4 w-4" />

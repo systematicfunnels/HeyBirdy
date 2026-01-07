@@ -9,7 +9,8 @@ export const ourFileRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
   imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })
     // Set permissions and file types for this FileRoute
-    .middleware(async ({ req }) => {
+    .middleware(async ({ req: _req }) => {
+      void _req;
       // This code runs on your server before upload
       const cookieStore = await cookies();
       const token = cookieStore.get("auth-token")?.value;
@@ -20,7 +21,8 @@ export const ourFileRouter = {
         const user = await verifyJWT(token);
         // Whatever is returned here is accessible in onUploadComplete as `metadata`
         return { userId: user.userId };
-      } catch (e) {
+      } catch (_e) {
+        void _e;
         throw new Error("Unauthorized");
       }
     })
@@ -42,7 +44,8 @@ export const ourFileRouter = {
       const user = await verifyJWT(token);
       return { userId: user.userId };
     })
-    .onUploadComplete(async ({ metadata, file }) => {
+    .onUploadComplete(async ({ metadata: _metadata, file }) => {
+      void _metadata;
       console.log("Video upload complete:", file.url);
       return { fileUrl: file.url };
     }),
