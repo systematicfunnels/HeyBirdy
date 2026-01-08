@@ -1,0 +1,374 @@
+Below is a **complete, clean, execution-ready Product Requirements Document (PRD)** for **HeyBirdy**, aligned with everything we have finalized:
+
+* Simple auth (no role selection)
+* Progressive role activation
+* Community-driven growth
+* First-timer friendly behavior
+* Clear why / how / when / action logic
+
+This PRD is written so **product, design, engineering, marketing, and investors** all read the *same truth*.
+
+---
+
+# 📘 Product Requirements Document (PRD)
+
+## **Product Name:** HeyBirdy
+
+**Version:** 1.0 (Foundational PRD)
+**Status:** Approved for Build
+**Owner:** Product Team
+**Target Launch:** MVP → Public Beta
+
+---
+
+## 1. Product Overview
+
+### 1.1 Product Vision
+
+> **Turn passive fans into active growth partners so creators grow with people, not algorithms.**
+
+HeyBirdy is a community-driven creator platform where:
+
+* creators publish content,
+* fans participate and share,
+* affiliates earn by promoting,
+* everyone is rewarded transparently.
+
+---
+
+### 1.2 Mission
+
+> Build a single platform where content, community, monetization, and growth live together — and where every contribution is rewarded.
+
+---
+
+## 2. Problem Statement
+
+### 2.1 Creator Problems
+
+* Algorithm-controlled reach (3–15%)
+* High CAC ($5–15 per subscriber)
+* Fragmented tools (5+ platforms)
+* Passive audiences
+* Unstable income
+
+### 2.2 Audience Problems
+
+* No reward for sharing content
+* No ownership in creator success
+* Passive consumption
+* Limited ways to support creators
+
+### 2.3 Market Gap
+
+No platform today:
+
+* rewards fans for helping creators grow
+* combines learning + earning + community
+* replaces algorithm dependence with human growth
+
+---
+
+## 3. Solution Summary
+
+### 3.1 Core Solution
+
+HeyBirdy introduces a **community-driven growth flywheel**:
+
+```
+Creator publishes
+→ Fans engage
+→ Fans share
+→ New users join
+→ Everyone earns
+→ Growth compounds
+```
+
+Growth is powered by **people**, not feeds.
+
+---
+
+### 3.2 Key Principles
+
+1. Simple signup first
+2. Roles unlocked by actions
+3. One identity, multiple capabilities
+4. Every action creates value
+5. Rewards are always visible
+
+---
+
+## 4. Target Users & Personas
+
+### 4.1 Personas
+
+* **Creator (Alex):** Wants predictable income & community-led growth
+* **Affiliate (Jamie):** Wants to earn by sharing trusted content
+* **Member/Learner (Taylor):** Wants to learn, engage, and be rewarded
+
+> Personas are **starting states**, not permanent roles.
+
+---
+
+## 5. User Identity & Role Model
+
+### 5.1 Identity Model
+
+* One account per user
+* No role selection at signup
+* Capabilities unlock via actions
+
+### 5.2 Progressive Role Activation
+
+| Action                  | Capability Unlocked |
+| ----------------------- | ------------------- |
+| Watching / learning     | Member (default)    |
+| Clicking “Share & Earn” | Affiliate           |
+| Clicking “Post content” | Creator             |
+
+Users can hold **multiple capabilities simultaneously**.
+
+---
+
+## 6. Core Features & Requirements
+
+---
+
+### 6.1 Authentication & Onboarding
+
+**Goal:** Zero friction entry
+
+#### Functional Requirements
+
+* Social login (Google, Apple, Email)
+* No role selection at signup
+* Immediate access to content feed
+* Inline prompts for role activation
+
+#### Success Criteria
+
+* Signup < 30 seconds
+* First content view < 1 minute
+
+---
+
+### 6.2 Content Platform (Creator Capability)
+
+#### Features
+
+* Multi-format content upload (video, text, course)
+* Free previews
+* Pricing (free, paid, subscription)
+* Affiliate enable/disable per content
+* Content analytics
+
+#### Creator Activation
+
+Triggered when user clicks **“Post content”**
+
+---
+
+### 6.3 Affiliate System (Affiliate Capability)
+
+#### Features
+
+* One-click affiliate activation
+* Auto-generated unique links
+* Real-time tracking (clicks, conversions)
+* Commission calculation
+* Leaderboards
+
+#### Affiliate Activation
+
+Triggered when user clicks **“Share & Earn”**
+
+---
+
+### 6.4 Learning & Engagement (Member Capability)
+
+#### Features
+
+* Personalized content feed
+* Progress tracking
+* Points for engagement
+* Skill badges
+* Comments & discussions
+
+Member capability is **always on by default**.
+
+---
+
+### 6.5 Monetization Engine
+
+#### Revenue Streams
+
+* Content sales
+* Subscriptions
+* Affiliate commissions
+* Tips / rewards
+
+#### Split Payments
+
+* Creator
+* Affiliate
+* Platform
+
+Earnings update in real time.
+
+---
+
+### 6.6 Community & Social Layer
+
+#### Features
+
+* Follow creators
+* Comments & replies
+* Leaderboards
+* Live sessions (Phase 2)
+
+Community interaction is tied to:
+
+* visibility
+* reputation
+* rewards
+
+---
+
+## 7. Key User Flows
+
+---
+
+### 7.1 First-Time User Flow
+
+```
+Signup
+→ Explore content
+→ Watch preview
+→ Engage
+→ See “Share & Earn”
+→ Take action
+```
+
+---
+
+### 7.2 Affiliate Conversion Flow
+
+```
+Watch content
+→ Click “Share & Earn”
+→ Link generated
+→ Share externally
+→ Conversion tracked
+→ Earnings credited
+```
+
+---
+
+### 7.3 Creator Activation Flow
+
+```
+Explore platform
+→ Click “Post content”
+→ Complete profile
+→ Upload content
+→ Enable affiliates
+```
+
+---
+
+## 8. Non-Functional Requirements
+
+### Performance
+
+* Page load < 2s
+* Real-time earnings updates
+* Scalable to 100k+ users
+
+### Security
+
+* Secure payments
+* Fraud prevention
+* Data privacy compliance
+
+### Usability
+
+* Mobile-first
+* Simple language
+* No blocked actions without explanation
+
+---
+
+## 9. Metrics & Success Criteria
+
+### Activation Metrics
+
+* % users viewing content on day 1
+* Time to first share
+* Time to first earning
+
+### Growth Metrics
+
+* Viral coefficient
+* Affiliate participation rate
+* Creator revenue stability
+
+### Retention Metrics
+
+* Weekly active users
+* Repeat sharing
+* Community engagement
+
+---
+
+## 10. Out of Scope (MVP)
+
+* Native mobile apps
+* Advanced AI content generation
+* Enterprise tools
+* Crypto / Web3
+
+---
+
+## 11. Risks & Mitigation
+
+| Risk               | Mitigation             |
+| ------------------ | ---------------------- |
+| Users don’t share  | Strong value + rewards |
+| Creator inactivity | Community incentives   |
+| Fraud              | Tracking & review      |
+| Complexity         | Progressive unlocks    |
+
+---
+
+## 12. Product Principles (Non-Negotiable)
+
+1. No forced roles
+2. No passive users
+3. No hidden rewards
+4. No algorithm mystery
+5. No unpaid contribution
+
+---
+
+## 13. Final Product Definition
+
+> **HeyBirdy is a creator growth platform where learning, sharing, and earning happen together — and where communities replace algorithms as the engine of growth.**
+
+---
+
+### ✅ This PRD is now:
+
+* consistent with your vision
+* friendly for first-time users
+* scalable for long-term growth
+* clear for engineering execution
+
+If you want next, I can:
+
+* convert this into **Jira epics**
+* write **MVP vs Phase-2 PRD**
+* design **API contracts**
+* create **pitch deck version**
+* or do a **PRD audit checklist**
+
+Just tell me.

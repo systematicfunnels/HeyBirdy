@@ -1,0 +1,365 @@
+Below is a **practical, opinionated Code Style Guide** for **HeyBirdy**, written to keep your codebase:
+
+* readable for first-time contributors
+* consistent across frontend + backend
+* scalable as the team grows
+* aligned with **progressive capability architecture**
+
+This is **not theoretical** — it’s meant to be enforced in code reviews.
+
+---
+
+# 🧑‍💻 Code Style Guide — HeyBirdy
+
+> **Core Principle**
+> Code should explain **intent**, not just logic.
+> If a new engineer can’t understand it in 5 minutes, it’s wrong.
+
+---
+
+## 1️⃣ General Engineering Principles (Non-Negotiable)
+
+1. **Readability over cleverness**
+2. **Explicit > implicit**
+3. **Capabilities > roles**
+4. **Events > side effects**
+5. **Small files > large files**
+6. **Consistency beats preference**
+
+---
+
+## 2️⃣ Naming Conventions (CRITICAL)
+
+### Files & Folders
+
+* `kebab-case` for folders
+* `camelCase` for variables/functions
+* `PascalCase` for React components & classes
+
+```
+/affiliate-links
+/user-profile
+/create-content.ts
+ShareEarnButton.tsx
+```
+
+---
+
+### Variables & Functions
+
+❌ Bad
+
+```ts
+let flag = true;
+```
+
+✅ Good
+
+```ts
+let isAffiliateActive = true;
+```
+
+Names must explain **why**, not just **what**.
+
+---
+
+### Capabilities (NEVER call them roles)
+
+❌
+
+```ts
+user.role === "affiliate"
+```
+
+✅
+
+```ts
+user.capabilities.isAffiliate
+```
+
+This rule is strict.
+
+---
+
+## 3️⃣ Frontend Code Style (Next.js / React)
+
+### Component Rules
+
+* One component = one responsibility
+* No business logic inside UI components
+* UI reads state, does not decide permissions
+
+#### Good Pattern
+
+```tsx
+if (user.capabilities.isAffiliate) {
+  return <AffiliateDashboard />;
+}
+```
+
+❌ Bad Pattern
+
+```tsx
+if (user.role === "affiliate") {
+  ...
+}
+```
+
+---
+
+### Folder Structure (Frontend)
+
+```
+/components
+  /content
+  /affiliate
+  /creator
+  /shared
+
+/hooks
+/store
+/services
+```
+
+* `components` → UI only
+* `services` → API calls
+* `hooks` → logic & orchestration
+
+---
+
+### State Management Rules
+
+* **Zustand** → user, capabilities, UI state
+* **React Query** → server state
+* Never mix both responsibilities
+
+---
+
+## 4️⃣ Backend Code Style (Node / API)
+
+### API Handler Rules
+
+1. Validate input first
+2. Check capability second
+3. Perform action
+4. Emit event
+5. Return response
+
+#### Example
+
+```ts
+if (!user.capabilities.isCreator) {
+  throw new ForbiddenError(
+    "Complete your profile to start creating content"
+  );
+}
+```
+
+❌ Never return silent 403s
+❌ Never let frontend guess what to do next
+
+---
+
+### Service Layer Pattern
+
+```
+Controller → Service → Repository → DB
+```
+
+Business logic **never** goes into controllers.
+
+---
+
+## 5️⃣ Database & Data Layer Style
+
+### Table Naming
+
+* plural, snake_case
+
+```
+users
+affiliate_links
+content_access
+```
+
+---
+
+### Columns
+
+* snake_case
+* explicit booleans
+
+❌
+
+```sql
+active
+```
+
+✅
+
+```sql
+is_affiliate_enabled
+```
+
+---
+
+## 6️⃣ Event Naming & Handling
+
+### Event Names
+
+* past tense
+* snake_case
+
+```
+affiliate_activated
+content_shared
+commission_earned
+```
+
+---
+
+### Event Rules
+
+* Events are immutable
+* Never emit events from UI
+* Backend only
+
+---
+
+## 7️⃣ Error Handling Style
+
+### Error Responses MUST:
+
+1. Explain what happened
+2. Explain what to do next
+
+#### Example
+
+```json
+{
+  "error": "AFFILIATE_NOT_ACTIVE",
+  "message": "Enable affiliate sharing to generate links."
+}
+```
+
+❌ No generic errors
+❌ No “Unauthorized” without context
+
+---
+
+## 8️⃣ Comments & Documentation
+
+### When to Comment
+
+* Why something exists
+* Why a decision was made
+
+❌ Don’t comment obvious code
+
+✅ Good comment
+
+```ts
+// We activate affiliate capability here because
+// user intent is explicit via Share & Earn click
+```
+
+---
+
+### File Headers (Only for Complex Logic)
+
+```ts
+/**
+ * Handles affiliate commission attribution.
+ * Must remain idempotent.
+ * Triggered by purchase_completed events.
+ */
+```
+
+---
+
+## 9️⃣ Formatting Rules (Automated)
+
+### Required Tools
+
+* **Prettier** (formatting)
+* **ESLint** (rules)
+* **Husky** (pre-commit)
+* **lint-staged**
+
+### Formatting Rules
+
+* 2 spaces
+* max line length: 100
+* trailing commas
+* semicolons required
+
+No debates — auto-format only.
+
+---
+
+## 🔐 10️⃣ Security-First Coding Rules
+
+* Never trust client data
+* Never calculate earnings on frontend
+* Never expose internal IDs publicly
+* Use UUIDs for public references
+
+---
+
+## 11️⃣ Code Review Checklist (MANDATORY)
+
+Every PR must answer:
+
+* [ ] Is capability logic correct?
+* [ ] Is user intent clear?
+* [ ] Are events emitted properly?
+* [ ] Is error guidance helpful?
+* [ ] Could a junior engineer understand this?
+
+If not → reject PR.
+
+---
+
+## 12️⃣ What We Explicitly Avoid
+
+❌ God components
+❌ Role-based conditionals
+❌ Magic numbers
+❌ Hard-coded permissions
+❌ Silent failures
+
+---
+
+## 🧠 Final Code Philosophy (Lock This)
+
+> **HeyBirdy’s code should read like a story of user intent —
+> not a puzzle of permissions.**
+
+If the code tells the story clearly:
+
+* bugs reduce
+* onboarding speeds up
+* scale becomes possible
+
+---
+
+## ✅ Summary (Pin This)
+
+* Capabilities, not roles
+* Intent-based logic
+* Event-driven side effects
+* Explicit errors
+* Consistent structure
+
+---
+
+If you want next, I can:
+
+* Generate **ESLint + Prettier config**
+* Create **backend folder template**
+* Write **example PRs**
+* Define **commit message conventions**
+* Create **engineering onboarding doc**
+
+Just tell me 👍
+

@@ -1,7 +1,0 @@
-export function PublicSearchPage() {
-  return (
-    <div className='p-6'>
-      <h1 className='text-2xl font-bold'>Search Page</h1>
-    </div>
-  )
-}

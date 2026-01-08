@@ -1,0 +1,407 @@
+Below is a **clear, scalable, build-ready Technical Architecture** for **HeyBirdy**, aligned with everything we decided:
+
+* simple auth first
+* progressive role activation (capabilities)
+* one identity, many capabilities
+* community-driven growth
+* real-time earnings & engagement
+
+This is written so **CTO, backend, frontend, and DevOps** can execute without ambiguity.
+
+---
+
+# 🏗️ Technical Architecture — HeyBirdy
+
+> **Architecture principle**
+> Design for **progressive capability unlock**, **real-time events**, and **viral growth**, not static dashboards.
+
+---
+
+## 1️⃣ Architecture Overview (High Level)
+
+### Architecture Style
+
+**Event-Driven, Modular Monolith → Microservices (Phase 2)**
+
+Why:
+
+* Faster MVP
+* Lower coordination overhead
+* Easy evolution into microservices later
+
+### High-Level Diagram (Conceptual)
+
+```
+Client (Web / Mobile)
+        |
+        v
+API Gateway (Auth + Routing)
+        |
+------------------------------------------------
+| User | Content | Affiliate | Community | Reward |
+------------------------------------------------
+        |
+Event Bus (Kafka / Redis Streams)
+        |
+Analytics + Notifications + Payouts
+```
+
+---
+
+## 2️⃣ Frontend Architecture
+
+### Tech Stack
+
+* **Next.js (App Router)** – web app
+* **React 18**
+* **TypeScript**
+* **Tailwind CSS**
+* **Zustand** – UI & capability state
+* **React Query** – server state
+* **WebSockets / SSE** – real-time updates
+
+---
+
+### Frontend Structure
+
+```
+/app
+ ├─ auth
+ ├─ discover
+ ├─ content
+ ├─ share-earn
+ ├─ create
+ ├─ community
+ ├─ insights
+ ├─ profile
+ └─ api (Next.js edge handlers)
+```
+
+### Key Frontend Concepts
+
+#### Capability-Based Rendering
+
+```ts
+if (user.capabilities.affiliate) {
+  showShareEarnUI();
+}
+```
+
+❌ No role routes
+✅ UI unlocks based on capability flags
+
+---
+
+## 3️⃣ Backend Architecture
+
+### Core Services (Logical)
+
+| Service              | Responsibility               |
+| -------------------- | ---------------------------- |
+| Auth Service         | Identity, sessions           |
+| User Service         | Profile + capabilities       |
+| Content Service      | Videos, courses, articles    |
+| Affiliate Service    | Links, tracking, commissions |
+| Reward Service       | Points, badges, streaks      |
+| Community Service    | Comments, follows            |
+| Payment Service      | Stripe payouts               |
+| Notification Service | Email, in-app                |
+| Analytics Service    | Events, metrics              |
+
+> In MVP, these can live in **one repo**, separated by modules.
+
+---
+
+## 4️⃣ User Identity & Capability Model (CRITICAL)
+
+### User Schema (Core)
+
+```sql
+users
+- id
+- email
+- username
+- created_at
+```
+
+```sql
+capabilities
+- user_id
+- is_member (default true)
+- is_affiliate
+- is_creator
+```
+
+```sql
+profiles
+- user_id
+- bio
+- avatar
+```
+
+Capabilities are toggled by **events**, not manual admin actions.
+
+---
+
+## 5️⃣ Progressive Role Activation (System Logic)
+
+### Affiliate Activation
+
+```text
+User clicks "Share & Earn"
+→ API checks affiliate capability
+→ If false:
+   - accept affiliate terms
+   - enable affiliate flag
+→ generate tracking link
+```
+
+### Creator Activation
+
+```text
+User clicks "Post Content"
+→ API checks creator capability
+→ If false:
+   - minimal profile completion
+   - enable creator flag
+→ open editor
+```
+
+❗ No blocking flows
+❗ No role switching logic
+
+---
+
+## 6️⃣ Content Architecture
+
+### Content Types
+
+* Video
+* Article
+* Course
+
+### Storage
+
+* **Cloudinary / Mux** → media
+* **PostgreSQL** → metadata
+* **Redis** → hot content cache
+
+### Content Table (Simplified)
+
+```sql
+content
+- id
+- creator_id
+- type
+- title
+- description
+- price
+- affiliate_enabled
+- status
+```
+
+---
+
+## 7️⃣ Affiliate & Tracking Architecture
+
+### Tracking Flow
+
+```
+Affiliate Link Click
+→ Tracking API
+→ Store click (Redis)
+→ Set cookie (30 days)
+→ On conversion:
+   - attribute affiliate
+   - calculate commission
+   - emit event
+```
+
+### Tables
+
+```sql
+affiliate_links
+affiliate_clicks
+affiliate_conversions
+affiliate_earnings
+```
+
+---
+
+## 8️⃣ Reward System Architecture
+
+### Reward Types
+
+* Points
+* Badges
+* Streaks
+* Rank
+
+### Reward Logic
+
+Rewards are **event-driven**.
+
+Example:
+
+```text
+EVENT: content_shared
+→ +25 points
+→ check badge unlock
+→ notify user
+```
+
+---
+
+## 9️⃣ Event-Driven Core (VERY IMPORTANT)
+
+### Event Bus
+
+* **Kafka** (scale) or **Redis Streams** (MVP)
+
+### Key Events
+
+```yaml
+user_signed_up
+content_viewed
+share_clicked
+affiliate_activated
+conversion_completed
+commission_earned
+creator_activated
+content_published
+reward_unlocked
+```
+
+Events power:
+
+* rewards
+* analytics
+* notifications
+* growth loops
+
+---
+
+## 🔔 10️⃣ Notifications Architecture
+
+### Channels
+
+* In-app (WebSocket)
+* Email (SendGrid)
+* Push (Phase 2)
+
+### Triggered by events
+
+```text
+EVENT: commission_earned
+→ notify affiliate
+→ update earnings UI
+```
+
+---
+
+## 💰 11️⃣ Payments & Payouts
+
+### Payments
+
+* **Stripe Checkout**
+* **Stripe Connect** for split payments
+
+### Payout Logic
+
+* Earnings stored internally
+* Weekly / monthly payout jobs
+* Fraud checks before release
+
+---
+
+## 12️⃣ Analytics Architecture
+
+### Tools
+
+* **PostHog / Mixpanel** (product analytics)
+* **Custom event store** (business metrics)
+
+### Metrics Tracked
+
+* Time to first value
+* First share
+* First earning
+* Creator activation
+* Viral coefficient
+
+---
+
+## 13️⃣ Security & Compliance
+
+* JWT + refresh tokens
+* Rate limiting
+* Fraud detection on affiliate links
+* GDPR-ready data deletion
+* Secure payouts (PCI handled by Stripe)
+
+---
+
+## 14️⃣ Deployment Architecture
+
+### Infrastructure
+
+* **Vercel** → frontend
+* **AWS / GCP** → backend
+* **PostgreSQL (RDS / Cloud SQL)**
+* **Redis (ElastiCache)**
+* **S3 / Cloudinary**
+
+### CI/CD
+
+* GitHub Actions
+* Preview deployments
+* Feature flags
+
+---
+
+## 15️⃣ Scaling Strategy (Future-Proof)
+
+### Phase 1 (MVP)
+
+* Modular monolith
+* Redis Streams
+* Single DB
+
+### Phase 2 (Growth)
+
+* Extract Affiliate & Reward services
+* Kafka
+* Read replicas
+* CDN caching
+
+---
+
+## 16️⃣ Non-Negotiable Technical Rules
+
+1. One user = one identity
+2. Capabilities, not roles
+3. Events drive rewards
+4. No synchronous analytics
+5. Frontend never hardcodes permissions
+
+---
+
+## 🧠 Final Architecture Summary
+
+> **HeyBirdy’s architecture is built to reward actions in real time,
+> unlock capabilities progressively,
+> and scale community-driven growth without breaking UX.**
+
+---
+
+### 🔜 Next (Optional, but Powerful)
+
+I can:
+
+* Create **API contracts (OpenAPI)**
+* Design **database schema (ERD)**
+* Write **event definitions**
+* Map **architecture → cost estimation**
+* Create **infra Terraform plan**
+
+Just tell me what you want next.

@@ -1,0 +1,317 @@
+Below is a **clear, execution-focused Product Roadmap** for **HeyBirdy**, designed to:
+
+* protect the **core vision**
+* avoid overbuilding early
+* let users naturally evolve (Member → Affiliate → Creator)
+* keep engineering, product, and business aligned
+
+This roadmap is **outcome-driven**, not feature-hoarding.
+
+---
+
+# 🗺️ Product Roadmap — HeyBirdy
+
+> **Roadmap principle**
+> Ship the **growth loop first**, polish later, scale last.
+
+---
+
+## 🟢 Phase 0: Foundations (Month 0–1)
+
+**Goal:** Make the product *real*, not perfect.
+
+### Outcomes
+
+* Users can sign up easily
+* Content can be consumed
+* One identity exists
+* System can evolve safely
+
+### Scope
+
+**Core Infrastructure**
+
+* Simple auth (Google / Email)
+* User + Profile schema
+* Capability system (member default)
+* Event bus (Redis Streams)
+
+**UX Foundations**
+
+* Discover feed (read-only)
+* Content detail page
+* Like, comment (basic)
+* Basic notifications (in-app)
+
+### Success Metrics
+
+* Signup < 30 seconds
+* Content view within 60 seconds
+* < 5% onboarding drop-off
+
+---
+
+## 🟢 Phase 1: MVP — “First Value” (Month 2–3)
+
+**Goal:** Prove users will **engage and share**.
+
+### Outcomes
+
+* Users consume content
+* Users interact
+* Platform feels social, not transactional
+
+### Scope
+
+**Content**
+
+* Video + article support
+* Free previews
+* Creator profiles (view-only)
+
+**Community**
+
+* Comments
+* Follows
+* Activity feed (who posted, commented)
+
+**Rewards (Light)**
+
+* Points for engagement
+* Basic badge (“Early Bird”)
+
+### What NOT to build
+
+❌ Payments
+❌ Affiliate earnings
+❌ Analytics dashboards
+
+### Success Metrics
+
+* 30% users comment or like
+* 20% follow a creator
+* Avg session > 5 min
+
+---
+
+## 🟡 Phase 2: Activation — “Share & Earn” (Month 4–5)
+
+**Goal:** Turn **fans into affiliates**.
+
+### Outcomes
+
+* First earning moment
+* Community-driven growth loop
+* Proof of incentive alignment
+
+### Scope
+
+**Affiliate System**
+
+* Affiliate capability activation
+* Share & Earn button
+* Unique referral links
+* Click + conversion tracking
+
+**Monetization**
+
+* Paid content (one-time)
+* Stripe Checkout
+* Commission calculation
+
+**UX**
+
+* Inline affiliate activation modal
+* Earnings counter (simple)
+
+### What NOT to build
+
+❌ Advanced payout rules
+❌ Tax automation
+❌ Complex leaderboards
+
+### Success Metrics
+
+* 15% users activate affiliate
+* 5% users earn at least once
+* Viral coefficient ≥ 0.4
+
+---
+
+## 🟡 Phase 3: Creator Activation (Month 6–7)
+
+**Goal:** Enable creators to **grow with their community**.
+
+### Outcomes
+
+* Creators publish
+* Affiliates promote
+* Revenue loop forms
+
+### Scope
+
+**Creator Tools**
+
+* Creator capability activation
+* Content upload (video, article)
+* Pricing (free / paid)
+* Enable affiliate per content
+
+**Creator Insights (Light)**
+
+* Views
+* Sales
+* Affiliate-driven revenue
+
+**Community**
+
+* Creator announcements
+* Top contributor highlights
+
+### What NOT to build
+
+❌ Full course builder
+❌ Advanced analytics
+❌ Brand deals
+
+### Success Metrics
+
+* 10% active users become creators
+* 30% creator sales via affiliates
+* Creator retention > 60%
+
+---
+
+## 🟠 Phase 4: Retention & Gamification (Month 8–9)
+
+**Goal:** Make users **come back daily**.
+
+### Outcomes
+
+* Habit formation
+* Visible progress
+* Social motivation
+
+### Scope
+
+**Gamification**
+
+* Streaks
+* Leaderboards (weekly)
+* Skill badges
+* Contribution ranks
+
+**Community**
+
+* Challenges
+* Featured members
+* Affiliate leaderboards
+
+**Notifications**
+
+* Earnings alerts
+* Milestones
+* Streak reminders
+
+### Success Metrics
+
+* DAU/MAU ≥ 25%
+* Avg weekly sessions ≥ 3
+* Repeat sharing rate ↑
+
+---
+
+## 🔵 Phase 5: Scale & Stability (Month 10–12)
+
+**Goal:** Prepare for **serious growth**.
+
+### Outcomes
+
+* System reliability
+* Creator confidence
+* Monetization stability
+
+### Scope
+
+**Payments**
+
+* Payout scheduling
+* Stripe Connect
+* Fraud detection (basic)
+
+**Performance**
+
+* CDN caching
+* Read replicas
+* Event processing optimization
+
+**Product**
+
+* Mobile responsiveness polish
+* Creator monetization insights
+* Affiliate performance summaries
+
+### Success Metrics
+
+* Platform uptime ≥ 99.9%
+* Payout success ≥ 99%
+* Creator NPS ≥ 40
+
+---
+
+## 🔮 Phase 6: Expansion (Post–Year 1)
+
+**Goal:** Deepen ecosystem, not distract.
+
+### Potential Directions
+
+* Courses & learning paths
+* Advanced creator tools
+* Native mobile apps
+* Brand partnerships
+* AI-powered recommendations
+
+⚠️ Only pursue if:
+
+* Core loop is strong
+* Retention is proven
+* Unit economics work
+
+---
+
+## 🧠 Roadmap Guardrails (Non-Negotiable)
+
+1. Never break simple signup
+2. Never force roles
+3. Never hide rewards
+4. Never optimize before activation
+5. Never build features without a metric
+
+---
+
+## 📌 Roadmap Summary (One Slide Version)
+
+| Phase | Focus      | User Outcome |
+| ----- | ---------- | ------------ |
+| 0     | Foundation | Trust        |
+| 1     | Engagement | Value        |
+| 2     | Affiliate  | Earnings     |
+| 3     | Creator    | Growth       |
+| 4     | Retention  | Habit        |
+| 5     | Scale      | Stability    |
+
+---
+
+## 🧠 Final Thought (Founder Lens)
+
+> **HeyBirdy succeeds not by adding features,
+> but by deepening participation.**
+
+If you want next, I can:
+
+* Convert this into **Jira epics**
+* Create a **Now / Next / Later roadmap**
+* Align roadmap with **funding milestones**
+* Do a **risk-based roadmap audit**
+
+Just tell me 👍

@@ -1,0 +1,495 @@
+Below is a **clear, implementation-ready API Design** for **HeyBirdy**, fully aligned with:
+
+* simple auth (no role at signup)
+* progressive capability activation
+* one user = one identity
+* event-driven rewards & earnings
+* frontend-first UX (no blocked actions)
+
+This is written so **backend, frontend, and QA** can work in parallel without confusion.
+
+---
+
+# 🔌 API Design — HeyBirdy
+
+> **API Design Principle**
+> APIs do not ask *who the user is*.
+> APIs respond to *what the user is trying to do*.
+
+---
+
+## 1️⃣ API Architecture Style
+
+### Style
+
+* **REST APIs** (primary)
+* **Event-driven** (async side effects)
+* **Capability-aware**, not role-based
+
+### API Layers
+
+```
+Client
+ → API Gateway
+   → Core APIs (Sync)
+   → Event Bus shows side effects (Async)
+```
+
+---
+
+## 2️⃣ Authentication & Identity APIs
+
+### 2.1 Sign Up / Login (Simple Auth)
+
+```http
+POST /auth/login
+POST /auth/signup
+```
+
+**Request**
+
+```json
+{
+  "provider": "google | apple | email",
+  "token": "oauth_token_or_credentials"
+}
+```
+
+**Response**
+
+```json
+{
+  "accessToken": "jwt",
+  "user": {
+    "id": "u_123",
+    "username": "alex",
+    "capabilities": {
+      "member": true,
+      "affiliate": false,
+      "creator": false
+    }
+  }
+}
+```
+
+❗ No role selection
+❗ Capabilities returned for UI gating
+
+---
+
+## 3️⃣ User & Profile APIs
+
+### 3.1 Get Current User
+
+```http
+GET /me
+```
+
+**Response**
+
+```json
+{
+  "id": "u_123",
+  "profile": {
+    "bio": "",
+    "avatar": ""
+  },
+  "capabilities": {
+    "member": true,
+    "affiliate": false,
+    "creator": false
+  },
+  "stats": {
+    "points": 120,
+    "earnings": 250
+  }
+}
+```
+
+---
+
+### 3.2 Update Profile (Common)
+
+```http
+PATCH /me/profile
+```
+
+Used by:
+
+* normal profile edits
+* creator unlock
+* public profile updates
+
+---
+
+## 4️⃣ Capability Activation APIs (CRITICAL)
+
+### 4.1 Activate Affiliate Capability
+
+Triggered when user clicks **Share & Earn**
+
+```http
+POST /capabilities/affiliate/activate
+```
+
+**Request**
+
+```json
+{
+  "acceptTerms": true
+}
+```
+
+**Response**
+
+```json
+{
+  "affiliateActivated": true
+}
+```
+
+📌 Emits event:
+
+```yaml
+affiliate_activated
+```
+
+---
+
+### 4.2 Activate Creator Capability
+
+Triggered when user clicks **Post Content**
+
+```http
+POST /capabilities/creator/activate
+```
+
+**Request**
+
+```json
+{
+  "bio": "Short creator bio",
+  "avatar": "image_url"
+}
+```
+
+**Response**
+
+```json
+{
+  "creatorActivated": true
+}
+```
+
+📌 Emits event:
+
+```yaml
+creator_activated
+```
+
+---
+
+## 5️⃣ Content APIs
+
+### 5.1 Discover Content
+
+```http
+GET /content/feed
+```
+
+Query params:
+
+```
+?cursor=abc&limit=20
+```
+
+---
+
+### 5.2 Content Detail
+
+```http
+GET /content/{contentId}
+```
+
+Includes:
+
+* preview access
+* affiliate availability
+* creator info
+
+---
+
+### 5.3 Create Content (Creator Only)
+
+```http
+POST /content
+```
+
+**Request**
+
+```json
+{
+  "type": "video | article | course",
+  "title": "My First Video",
+  "description": "...",
+  "price": 499,
+  "affiliateEnabled": true
+}
+```
+
+🔐 Backend checks:
+
+```text
+if !capabilities.creator → 403 with guidance message
+```
+
+---
+
+## 6️⃣ Affiliate APIs
+
+### 6.1 Generate Affiliate Link
+
+```http
+POST /affiliate/links
+```
+
+**Request**
+
+```json
+{
+  "contentId": "c_123"
+}
+```
+
+**Response**
+
+```json
+{
+  "link": "https://heybirdy.com/r/abc123"
+}
+```
+
+🔐 If affiliate not activated:
+
+* frontend must call `/capabilities/affiliate/activate` first
+
+---
+
+### 6.2 Track Affiliate Click (Public)
+
+```http
+GET /r/{code}
+```
+
+Behavior:
+
+* logs click
+* sets cookie
+* redirects to content
+
+---
+
+### 6.3 Affiliate Dashboard
+
+```http
+GET /affiliate/dashboard
+```
+
+Returns:
+
+* earnings
+* clicks
+* conversions
+* leaderboard rank
+
+---
+
+## 7️⃣ Purchase & Monetization APIs
+
+### 7.1 Purchase Content
+
+```http
+POST /payments/checkout
+```
+
+**Request**
+
+```json
+{
+  "contentId": "c_123",
+  "affiliateCode": "abc123"
+}
+```
+
+Flow:
+
+* Stripe checkout
+* affiliate attribution
+* emit conversion event
+
+📌 Event:
+
+```yaml
+conversion_completed
+commission_calculated
+```
+
+---
+
+## 8️⃣ Rewards & Gamification APIs
+
+### 8.1 Get Rewards
+
+```http
+GET /rewards
+```
+
+Returns:
+
+* points
+* badges
+* streaks
+* rank
+
+---
+
+### 8.2 Reward Events (Internal)
+
+Rewards are NOT created via direct API calls.
+
+Instead:
+
+```yaml
+EVENT: content_shared
+→ Reward Service adds points
+```
+
+This prevents abuse and ensures consistency.
+
+---
+
+## 9️⃣ Community APIs
+
+### 9.1 Comments
+
+```http
+POST /comments
+GET  /comments?contentId=c_123
+```
+
+---
+
+### 9.2 Follow Creator
+
+```http
+POST /follows
+```
+
+---
+
+## 🔔 10️⃣ Notification APIs
+
+### 10.1 Fetch Notifications
+
+```http
+GET /notifications
+```
+
+---
+
+### 10.2 Real-Time Updates
+
+* WebSocket / SSE channel
+* pushed on:
+
+  * earnings
+  * rewards
+  * mentions
+
+---
+
+## 📊 11️⃣ Analytics & Events (Internal)
+
+### Event Contract (Example)
+
+```json
+{
+  "event": "commission_earned",
+  "userId": "u_123",
+  "metadata": {
+    "amount": 250,
+    "contentId": "c_123"
+  }
+}
+```
+
+Events consumed by:
+
+* Rewards
+* Notifications
+* Analytics
+* Fraud detection
+
+---
+
+## 12️⃣ Error Handling Rules (UX-Safe)
+
+### Capability Missing (Example)
+
+```http
+403 Forbidden
+```
+
+```json
+{
+  "error": "CREATOR_NOT_ACTIVE",
+  "message": "Complete your profile to start creating content."
+}
+```
+
+❗ Never return generic 403
+❗ Always return **next step guidance**
+
+---
+
+## 13️⃣ API Security Rules
+
+* JWT auth
+* Rate limiting on:
+
+  * affiliate links
+  * payouts
+* Idempotency keys for payments
+* No client-side trust for earnings
+
+---
+
+## 14️⃣ API Naming & Consistency Rules
+
+1. Verbs for actions (`/activate`)
+2. Nouns for resources (`/content`)
+3. Capabilities ≠ roles
+4. No duplicate endpoints per role
+5. Events drive side effects
+
+---
+
+## 🧠 Final API Philosophy (Lock This)
+
+> **HeyBirdy APIs follow user intent,
+> unlock capabilities progressively,
+> and let events—not UI—decide rewards.**
+
+---
+
+### 🔜 Next (Highly Recommended)
+
+I can:
+
+* Generate **OpenAPI (Swagger) spec**
+* Design **ER diagrams**
+* Create **API test cases**
+* Map **API → frontend hooks**
+* Do **security threat modeling**
+
+Just tell me what you want next.

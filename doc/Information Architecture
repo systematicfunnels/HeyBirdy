@@ -1,0 +1,323 @@
+Below is a **clear, build-ready Information Architecture (IA)** for **HeyBirdy**, designed specifically for:
+
+* **first-time users**
+* **simple auth**
+* **progressive role activation**
+* **one identity, many capabilities**
+* **community-driven growth**
+
+This explains **what exists, where it lives, and why**, without over-engineering.
+
+---
+
+## 🗂️ Information Architecture (IA) — HeyBirdy
+
+> **Core IA Principle**
+> Users don’t navigate “modules”.
+> They move through **content → actions → outcomes**.
+
+---
+
+## 1️⃣ Top-Level IA (What exists at the highest level)
+
+HeyBirdy has **ONE primary surface** after login:
+
+```
+Home (Discovery Feed)
+```
+
+Everything else is **contextual**, not forced.
+
+### Why this matters
+
+* Matches social platforms
+* Reduces cognitive load
+* Encourages exploration before commitment
+
+---
+
+## 2️⃣ Global Structure (Always Available)
+
+These elements are **always accessible**, regardless of capability.
+
+```
+┌─────────────────────────────────────┐
+│ Top Bar                            │
+│ - Logo                             │
+│ - Search                           │
+│ - Notifications                    │
+│ - Profile                          │
+└─────────────────────────────────────┘
+```
+
+### Profile (single identity)
+
+Contains:
+
+* Public profile
+* Capabilities (Member / Affiliate / Creator)
+* Earnings
+* Settings
+
+⚠️ No role switching
+Capabilities appear automatically.
+
+---
+
+## 3️⃣ Primary Navigation (Flow-Based, Not Role-Based)
+
+Instead of role dashboards, HeyBirdy uses **Flows**.
+
+### Flow Switcher (Left / Bottom Nav)
+
+```
+• Discover
+• Create
+• Share & Earn
+• Community
+• Insights
+```
+
+> These flows exist for **everyone**
+> Visibility adapts based on capability
+
+---
+
+## 4️⃣ Flow-by-Flow IA Breakdown
+
+---
+
+### 🟢 1. Discover (Default Entry Point)
+
+**Purpose:** Content-first exploration
+
+```
+Discover
+├── Feed (personalized)
+├── Trending
+├── Categories
+├── Creator Profiles
+└── Content Detail
+```
+
+#### Content Detail Page
+
+```
+Content
+├── Preview / Watch
+├── Description
+├── Creator Info
+├── Comments
+├── Actions
+│   ├── Like
+│   ├── Comment
+│   └── Share & Earn
+```
+
+🔓 Clicking **Share & Earn** may unlock Affiliate capability.
+
+---
+
+### 🎥 2. Create (Creator Capability)
+
+Visible **only after user clicks “Post content”**
+
+```
+Create
+├── Post Content
+│   ├── Video
+│   ├── Article
+│   └── Course
+├── Content Library
+├── Monetization
+│   ├── Pricing
+│   ├── Subscriptions
+│   └── Enable Affiliates
+├── Community Tools
+└── Creator Settings
+```
+
+🔓 Clicking **Post Content** unlocks Creator capability.
+
+---
+
+### 🔗 3. Share & Earn (Affiliate Capability)
+
+Visible **only after first Share & Earn action**
+
+```
+Share & Earn
+├── My Links
+├── Programs Joined
+├── Earnings
+├── Performance
+│   ├── Clicks
+│   ├── Conversions
+│   └── Payouts
+└── Leaderboard
+```
+
+Affiliate tools never appear before intent.
+
+---
+
+### 👥 4. Community (Everyone)
+
+```
+Community
+├── Following
+├── Discussions
+├── Challenges
+├── Leaderboards
+└── Live Sessions
+```
+
+Community is **action-driven**, not idle chat.
+
+---
+
+### 📊 5. Insights (Adaptive)
+
+```
+Insights
+├── Personal Progress
+│   ├── Points
+│   ├── Badges
+│   └── Streaks
+├── Earnings (if any)
+├── Creator Analytics (if creator)
+└── Affiliate Analytics (if affiliate)
+```
+
+Same location.
+Different depth based on capability.
+
+---
+
+## 5️⃣ Profile IA (Single Identity, Multiple Capabilities)
+
+```
+Profile
+├── Public View
+│   ├── Bio
+│   ├── Content
+│   ├── Badges
+│   └── Reputation
+├── Earnings
+├── Capabilities
+│   ├── Member (default)
+│   ├── Affiliate (if unlocked)
+│   └── Creator (if unlocked)
+├── Settings
+│   ├── Account
+│   ├── Payouts
+│   ├── Privacy
+│   └── Notifications
+```
+
+No duplication.
+No multiple dashboards.
+
+---
+
+## 6️⃣ Capability Visibility Rules (CRITICAL)
+
+| Feature            | Before Unlock | After Unlock |
+| ------------------ | ------------- | ------------ |
+| Share links        | Hidden        | Visible      |
+| Affiliate earnings | Hidden        | Visible      |
+| Content upload     | Hidden        | Visible      |
+| Creator analytics  | Hidden        | Visible      |
+| Monetization tools | Hidden        | Visible      |
+
+❌ Never show disabled UI
+❌ Never ask user to “choose role”
+
+---
+
+## 7️⃣ Cross-Cutting Systems (Appear Everywhere)
+
+### 🔔 Notifications
+
+```
+Notifications
+├── Earnings
+├── Content updates
+├── Community mentions
+├── Milestones
+└── System alerts
+```
+
+---
+
+### ⭐ Rewards Layer
+
+```
+Rewards
+├── Points
+├── Badges
+├── Streaks
+└── Rank
+```
+
+Always visible.
+Always meaningful.
+
+---
+
+## 8️⃣ Search IA (Global)
+
+```
+Search
+├── Content
+├── Creators
+├── Programs
+└── Topics
+```
+
+Search results adapt based on capability:
+
+* Members see content
+* Affiliates see promotable programs
+* Creators see insights
+
+---
+
+## 9️⃣ IA Rules (Non-Negotiable)
+
+1. One user = one profile
+2. No role-based dashboards
+3. Capabilities unlock via actions
+4. Content is the center of IA
+5. Every page leads to an action
+6. No dead ends
+7. No duplicated navigation
+
+---
+
+## 🧠 Final IA Summary (Simple Language)
+
+> **HeyBirdy is organized around what people do —
+> not who they think they are.**
+
+Users:
+
+* discover content
+* take actions
+* unlock capabilities
+* grow naturally
+
+---
+
+### 🔜 Next (Recommended)
+
+I can:
+
+* Convert this IA into a **sitemap**
+* Map IA → **UI wireframes**
+* Create **mobile-first IA**
+* Define **URL structure**
+* Validate IA with **first-time user testing**
+
+Just tell me 👍
+

@@ -1,0 +1,328 @@
+Below is a **clear, first-timer–focused User Journey Map** for **HeyBirdy**, written to explain **how users actually move, interact, and evolve** on the platform.
+
+This is **behavioral**, not theoretical.
+It answers **WHY → WHEN → HOW → WHAT ACTION** at every step.
+
+---
+
+# 🧭 User Journey Maps — HeyBirdy
+
+> **Core rule to remember:**
+> Users do NOT choose roles upfront.
+> They **become** roles by doing things.
+
+---
+
+## 🟢 Journey 0: First Entry (All Users)
+
+### 🎯 Goal
+
+Let the user explore without pressure.
+
+### WHY user arrives
+
+* A creator shared a link
+* A friend earned by sharing
+* Curiosity from social media
+
+### WHAT the user sees
+
+* Content first (video, course, article)
+* No forced signup wall
+
+### FIRST ACTION
+
+* Watch / preview content
+
+### USER THINKS
+
+> “Let me see if this is useful.”
+
+---
+
+## 👤 Journey 1: Member / Learner Journey (Default State)
+
+Everyone starts here.
+
+---
+
+### Phase 1: Explore & Consume
+
+**WHY**
+
+* Learn something useful
+* Check creator credibility
+
+**WHEN**
+
+* Immediately after signup
+
+**HOW**
+
+* Scroll feed
+* Watch previews
+* Read comments
+
+**ACTIONS**
+
+* Watch
+* Like
+* Comment
+* Follow creator
+
+✅ Outcome:
+
+* Points earned
+* Progress shown
+* No complexity
+
+---
+
+### Phase 2: Engagement & Trust
+
+**WHY**
+
+* Feels value
+* Likes the creator
+
+**WHEN**
+
+* After 1–2 content sessions
+
+**HOW**
+
+* Participates in discussions
+* Saves content
+* Joins challenges
+
+**ACTIONS**
+
+* Comment
+* Join community
+* Earn points
+
+✅ Outcome:
+
+* Feels recognized
+* Trust builds
+
+---
+
+## 🔗 Journey 2: Affiliate Journey (Unlocked by Action)
+
+Triggered naturally.
+
+---
+
+### Phase 3: First “Share & Earn” Moment
+
+**WHY**
+
+* “I liked this — others might too”
+* “I can earn by sharing”
+
+**WHEN**
+
+* Right after consuming content
+
+**HOW**
+
+* Clicks **Share & Earn**
+
+**ACTIONS**
+
+* Accept affiliate terms
+* Auto-generate link
+* Share externally
+
+🎉 Affiliate capability unlocked
+
+---
+
+### Phase 4: First Earning
+
+**WHY**
+
+* Motivation spike
+
+**WHEN**
+
+* Friend clicks / buys
+
+**HOW**
+
+* System tracks conversion
+
+**ACTIONS**
+
+* View earnings
+* Share again
+
+💡 This is the **hook moment**:
+
+> “This platform rewards me for helping.”
+
+---
+
+## 🎥 Journey 3: Creator Journey (Intent-Based)
+
+Not everyone becomes a creator — and that’s OK.
+
+---
+
+### Phase 5: Creator Curiosity
+
+**WHY**
+
+* “I could post my own content”
+* “I already know something valuable”
+
+**WHEN**
+
+* After confidence + engagement
+
+**HOW**
+
+* Clicks **Post content**
+
+**ACTIONS**
+
+* Complete profile
+* Upload content
+
+🎉 Creator capability unlocked
+
+---
+
+### Phase 6: First Publish
+
+**WHY**
+
+* Share knowledge
+* Build audience
+
+**WHEN**
+
+* Same session or next day
+
+**HOW**
+
+* Simple editor
+* Enable Share & Earn
+
+**ACTIONS**
+
+* Publish
+* Invite followers
+
+✅ Outcome:
+
+* Fans become promoters
+* Growth loop starts
+
+---
+
+## 🔁 Journey 4: Community Interaction (Where Users Meet)
+
+This is where **users interact with each other**.
+
+---
+
+### Who interacts with whom
+
+| Interaction           | Why                   |
+| --------------------- | --------------------- |
+| Fan ↔ Creator         | Feedback, recognition |
+| Fan ↔ Fan             | Learning, discussion  |
+| Affiliate ↔ Affiliate | Sharing strategies    |
+| Affiliate ↔ Creator   | Assets, optimization  |
+| Learner ↔ Learner     | Progress & challenges |
+
+---
+
+### WHEN interactions happen
+
+| Moment         | Interaction        |
+| -------------- | ------------------ |
+| After watching | Comment            |
+| After earning  | Celebrate          |
+| After ranking  | Compete            |
+| After struggle | Ask for help       |
+| Before launch  | Coordinate sharing |
+
+---
+
+## 📈 Journey 5: Growth & Retention Loop
+
+Once activated, users repeat this loop:
+
+```
+Consume
+→ Share
+→ Earn
+→ Get noticed
+→ Do more
+```
+
+This loop applies to:
+
+* Members
+* Affiliates
+* Creators
+
+Only **intensity changes**, not behavior.
+
+---
+
+## 🧠 Emotional Journey (Important)
+
+| Stage         | Emotion    |
+| ------------- | ---------- |
+| Entry         | Curious    |
+| First value   | Interested |
+| First share   | Confident  |
+| First earning | Excited    |
+| Recognition   | Proud      |
+| Consistency   | Loyal      |
+
+HeyBirdy is designed to **reward emotions**, not just actions.
+
+---
+
+## 🚦Drop-off Prevention (Built-in)
+
+| Risk           | Platform Response  |
+| -------------- | ------------------ |
+| No action      | Suggest content    |
+| No earnings    | Share tips         |
+| Low engagement | Highlight progress |
+| Confusion      | Inline guidance    |
+
+---
+
+## 🧩 Summary: Why This Journey Works
+
+* No forced decisions
+* No role confusion
+* No empty actions
+* Every step gives feedback
+* Users grow at their own pace
+
+---
+
+## 🧠 Final Simple Explanation (Use this internally)
+
+> **People come to HeyBirdy to watch.
+> They stay because they earn.
+> They grow because they’re valued.**
+
+---
+
+If you want next, I can:
+
+* Visualize this as a **flow diagram**
+* Map **journey → UI screens**
+* Write **onboarding microcopy**
+* Define **drop-off analytics**
+
+Just tell me 👍

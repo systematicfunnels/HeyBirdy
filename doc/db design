@@ -1,0 +1,435 @@
+Below is a **clean, scalable, implementation-ready Database Design** for **HeyBirdy**, aligned with everything we locked:
+
+* one user identity
+* progressive capability activation
+* content-centric system
+* affiliate + rewards + community
+* event-driven growth
+
+This is written so **backend engineers can start schema creation immediately** and **scale later without rewrites**.
+
+---
+
+# 🗄️ Database Design — HeyBirdy
+
+> **Database Principle**
+> Store **facts**, not assumptions.
+> Roles are derived from **capabilities + events**, not hard-coded types.
+
+---
+
+## 1️⃣ Database Strategy
+
+### Primary Database
+
+* **PostgreSQL** (source of truth)
+
+### Supporting Stores
+
+* **Redis** → caching, counters, sessions
+* **Object Storage (S3 / Cloudinary)** → media
+* **Event Store (Kafka / Redis Streams)** → async processing
+
+---
+
+## 2️⃣ Core Identity Model (FOUNDATION)
+
+### 2.1 Users (Single Identity)
+
+```sql
+users
+-----
+id (PK)
+email (unique)
+username (unique)
+created_at
+updated_at
+```
+
+📌 One user = one identity
+📌 No role column here
+
+---
+
+### 2.2 Profiles (Human Layer)
+
+```sql
+profiles
+--------
+user_id (PK, FK → users.id)
+display_name
+bio
+avatar_url
+created_at
+updated_at
+```
+
+Used by:
+
+* creators
+* affiliates
+* members
+
+---
+
+## 3️⃣ Capability System (CRITICAL)
+
+### 3.1 Capabilities
+
+```sql
+capabilities
+------------
+user_id (PK, FK → users.id)
+is_member BOOLEAN DEFAULT true
+is_affiliate BOOLEAN DEFAULT false
+is_creator BOOLEAN DEFAULT false
+affiliate_activated_at
+creator_activated_at
+```
+
+📌 Capabilities are toggled by **actions**
+📌 Never manually assigned by role selection
+
+---
+
+## 4️⃣ Content System (Core Product)
+
+### 4.1 Content
+
+```sql
+content
+-------
+id (PK)
+creator_id (FK → users.id)
+type ENUM ('video','article','course')
+title
+description
+price
+currency
+affiliate_enabled BOOLEAN
+status ENUM ('draft','published','archived')
+created_at
+updated_at
+```
+
+---
+
+### 4.2 Content Media
+
+```sql
+content_media
+-------------
+id (PK)
+content_id (FK → content.id)
+media_type ENUM ('video','image','file')
+media_url
+duration
+```
+
+---
+
+### 4.3 Content Access (Purchases)
+
+```sql
+content_access
+--------------
+id (PK)
+user_id (FK → users.id)
+content_id (FK → content.id)
+purchase_id
+granted_at
+```
+
+---
+
+## 5️⃣ Affiliate System (Growth Engine)
+
+### 5.1 Affiliate Programs
+
+```sql
+affiliate_programs
+------------------
+id (PK)
+content_id (FK → content.id)
+creator_id (FK → users.id)
+commission_percentage
+is_active
+created_at
+```
+
+---
+
+### 5.2 Affiliate Links
+
+```sql
+affiliate_links
+---------------
+id (PK)
+affiliate_id (FK → users.id)
+content_id (FK → content.id)
+code (unique)
+created_at
+```
+
+---
+
+### 5.3 Affiliate Clicks
+
+```sql
+affiliate_clicks
+----------------
+id (PK)
+affiliate_link_id (FK → affiliate_links.id)
+ip_address
+user_agent
+clicked_at
+```
+
+(Hot data → cache in Redis)
+
+---
+
+### 5.4 Affiliate Conversions
+
+```sql
+affiliate_conversions
+---------------------
+id (PK)
+affiliate_link_id (FK)
+buyer_id (FK → users.id)
+purchase_id
+converted_at
+```
+
+---
+
+### 5.5 Affiliate Earnings
+
+```sql
+affiliate_earnings
+------------------
+id (PK)
+affiliate_id (FK → users.id)
+content_id (FK)
+amount
+currency
+status ENUM ('pending','approved','paid')
+created_at
+```
+
+---
+
+## 6️⃣ Payments & Monetization
+
+### 6.1 Purchases
+
+```sql
+purchases
+---------
+id (PK)
+buyer_id (FK → users.id)
+content_id (FK)
+total_amount
+currency
+payment_provider
+payment_status
+created_at
+```
+
+---
+
+### 6.2 Payouts
+
+```sql
+payouts
+-------
+id (PK)
+user_id (FK → users.id)
+amount
+currency
+status ENUM ('pending','processing','completed')
+scheduled_at
+processed_at
+```
+
+---
+
+## 7️⃣ Rewards & Gamification
+
+### 7.1 Points Ledger (Immutable)
+
+```sql
+points_ledger
+-------------
+id (PK)
+user_id (FK → users.id)
+points
+reason
+event_id
+created_at
+```
+
+📌 Never update points directly
+📌 Always append (audit-safe)
+
+---
+
+### 7.2 Badges
+
+```sql
+badges
+------
+id (PK)
+name
+description
+icon
+```
+
+---
+
+### 7.3 User Badges
+
+```sql
+user_badges
+-----------
+user_id (FK → users.id)
+badge_id (FK → badges.id)
+earned_at
+```
+
+---
+
+## 8️⃣ Community & Social Layer
+
+### 8.1 Comments
+
+```sql
+comments
+--------
+id (PK)
+user_id (FK → users.id)
+content_id (FK → content.id)
+parent_id (nullable)
+body
+created_at
+```
+
+---
+
+### 8.2 Follows
+
+```sql
+follows
+-------
+follower_id (FK → users.id)
+followed_id (FK → users.id)
+created_at
+```
+
+---
+
+## 9️⃣ Notifications
+
+### 9.1 Notifications
+
+```sql
+notifications
+-------------
+id (PK)
+user_id (FK → users.id)
+type
+payload JSONB
+is_read BOOLEAN
+created_at
+```
+
+---
+
+## 🔁 10️⃣ Event Store (ASYNC CORE)
+
+### 10.1 Events
+
+```sql
+events
+------
+id (PK)
+event_type
+user_id
+metadata JSONB
+created_at
+```
+
+Used by:
+
+* rewards
+* analytics
+* notifications
+* fraud detection
+
+---
+
+## 11️⃣ Analytics (Derived, Not Primary)
+
+Analytics tables are **derived** from events.
+
+Example:
+
+```sql
+daily_user_activity
+affiliate_performance
+creator_revenue_summary
+```
+
+Never block user actions on analytics writes.
+
+---
+
+## 12️⃣ Indexing & Performance Rules
+
+* Index all FK columns
+* Index `affiliate_links.code`
+* Index `content.creator_id`
+* Partial indexes for:
+
+  * `affiliate_earnings.status = 'pending'`
+  * `notifications.is_read = false`
+
+---
+
+## 13️⃣ Data Integrity Rules (NON-NEGOTIABLE)
+
+1. Never delete earnings records
+2. Never mutate points ledger
+3. Never store role as ENUM
+4. Capabilities change only via events
+5. Payments are append-only
+
+---
+
+## 🧠 Final Database Summary
+
+> **HeyBirdy’s database is built around actions,
+> not labels —
+> facts, not guesses —
+> and growth, not static roles.**
+
+This schema:
+
+* supports progressive roles
+* scales to millions of users
+* keeps financial data safe
+* enables real-time rewards
+
+---
+
+### 🔜 Next (Strongly Recommended)
+
+I can:
+
+* Generate **ER diagram**
+* Create **migration scripts**
+* Define **Redis schema**
+* Design **event contracts**
+* Estimate **DB cost at scale**
+
+Tell me what you want next 👌

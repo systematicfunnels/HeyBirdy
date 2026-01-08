@@ -1,0 +1,370 @@
+Below is a **practical, build-ready Wireframes & Prototypes blueprint** for **HeyBirdy**, written so:
+
+* a **first-time user journey is obvious**
+* **designers know what to draw**
+* **engineers know what to build**
+* **nothing breaks the progressive-role logic**
+
+This is **low-fidelity by intention** (wireframes first, visuals later).
+
+---
+
+# 🧩 Wireframes & Prototypes — HeyBirdy
+
+> **Wireframe principle**
+> If a screen cannot explain **what to do next in 3 seconds**, it is wrong.
+
+---
+
+## 1️⃣ Wireframe System Rules (Non-Negotiable)
+
+Before screens, lock these rules:
+
+1. **Content first, always**
+2. **No role selection screens**
+3. **Actions unlock capabilities**
+4. **One screen = one main action**
+5. **Rewards visible on every major screen**
+
+---
+
+## 2️⃣ Global Layout (Applies to ALL Screens)
+
+```
+┌──────────────────────────────────────────┐
+│ Logo | Search | 🔔 | Profile              │
+├──────────────────────────────────────────┤
+│                                          │
+│              MAIN CONTENT                │
+│                                          │
+├──────────────────────────────────────────┤
+│ Discover | Create | Share & Earn | Community │
+└──────────────────────────────────────────┘
+```
+
+* Top bar = identity & awareness
+* Bottom/side nav = **flows**, not roles
+* Center = **content or action**
+
+---
+
+## 3️⃣ Wireframe 1: First-Time Entry (Discover Feed)
+
+### 🎯 Purpose
+
+Let the user **see value before deciding anything**
+
+```
+[ Content Card ]
+----------------------------------
+Creator Avatar   Creator Name
+----------------------------------
+[ Video Preview / Image ]
+----------------------------------
+Title
+Short description
+----------------------------------
+👍 Like   💬 Comment   🔁 Share & Earn
+----------------------------------
+```
+
+### Key behaviors
+
+* User can scroll freely
+* “Share & Earn” is visible but optional
+* No friction, no setup
+
+✅ Prototype interaction:
+
+* Tap content → opens Content Detail
+* Scroll → infinite feed
+
+---
+
+## 4️⃣ Wireframe 2: Content Detail Screen
+
+### 🎯 Purpose
+
+Convert **consumption → engagement → action**
+
+```
+[ Video / Course Preview ]
+
+Title
+Creator Name  • Follow
+
+Description (collapsed)
+
+----------------------------------
+👍 Like   💬 Comment   🔁 Share & Earn
+----------------------------------
+
+[ Comments ]
+```
+
+### Critical micro-interaction
+
+When user taps **Share & Earn** for first time:
+
+```
+Modal (inline, light):
+
+"You can earn by sharing this.
+Turn it on in 30 seconds."
+
+[ Enable & Get Link ]
+```
+
+No dashboard redirect.
+No new page.
+
+---
+
+## 5️⃣ Wireframe 3: Affiliate Unlock (Inline)
+
+### 🎯 Purpose
+
+Unlock capability **without breaking flow**
+
+```
+[ Affiliate Link Generated ]
+----------------------------------
+Your link:
+heybirdy.com/abc123
+
+[ Copy Link ]
+[ Share on WhatsApp ]
+[ Share on Twitter ]
+----------------------------------
+"Earn when someone buys or joins"
+```
+
+After this:
+
+* “Share & Earn” flow appears in nav
+* Earnings counter appears in profile
+
+🎉 Affiliate capability unlocked silently.
+
+---
+
+## 6️⃣ Wireframe 4: Share & Earn (Affiliate Flow)
+
+### 🎯 Purpose
+
+Show progress, not overwhelm
+
+```
+Share & Earn
+----------------------------------
+Earnings Today: ₹250
+Total Earnings: ₹1,200
+
+----------------------------------
+[ My Links ]
+[ Programs Joined ]
+
+----------------------------------
+Top Performers (Leaderboard)
+```
+
+Design notes:
+
+* Numbers first
+* Charts later
+* Clear motivation
+
+---
+
+## 7️⃣ Wireframe 5: Create Trigger (Before Creator Unlock)
+
+### 🎯 Purpose
+
+Activate creator role **only on intent**
+
+User taps **Create** or **Post Content**
+
+```
+"Want to post your own content?
+
+It takes 2 minutes to get started."
+
+[ Become a Creator ]
+```
+
+No forcing.
+No complexity.
+
+---
+
+## 8️⃣ Wireframe 6: Creator Unlock (Minimal)
+
+```
+Create Your Creator Profile
+----------------------------------
+[ Profile Photo ]
+[ Short Bio ]
+
+[ Continue ]
+```
+
+After submit:
+
+* Creator tools unlock
+* User goes directly to editor
+
+---
+
+## 9️⃣ Wireframe 7: Content Editor (Creator)
+
+### 🎯 Purpose
+
+Fast publish, not perfect setup
+
+```
+[ Upload Video / Write / Create Course ]
+
+Title
+Description
+
+----------------------------------
+Pricing:
+( ) Free
+( ) Paid
+
+[ ✓ Enable Share & Earn ]
+
+----------------------------------
+[ Publish ]
+```
+
+Defaults matter:
+
+* Affiliate enabled by default
+* Simple pricing first
+
+---
+
+## 🔁 10️⃣ Wireframe 8: Community Screen
+
+### 🎯 Purpose
+
+Show people, not features
+
+```
+Community
+----------------------------------
+[ Discussions ]
+[ Challenges ]
+[ Leaderboard ]
+
+----------------------------------
+Top Contributors This Week
+```
+
+Interaction driven by:
+
+* comments
+* challenges
+* rankings
+
+---
+
+## 11️⃣ Wireframe 9: Profile (Single Identity)
+
+### 🎯 Purpose
+
+Show **who the user is becoming**
+
+```
+Profile
+----------------------------------
+Avatar
+Name
+
+Badges:
+🎓 Learner  🔗 Affiliate  🎥 Creator
+
+----------------------------------
+Content Created (if any)
+Earnings (if any)
+Points & Rank
+```
+
+No role switching UI.
+Capabilities are visible as **earned status**.
+
+---
+
+## 12️⃣ Prototype Flow Summary (Clickable Logic)
+
+### Day-1 Prototype Path
+
+```
+Signup
+→ Discover
+→ Watch content
+→ Share & Earn
+→ First earning
+```
+
+### Day-7 Prototype Path
+
+```
+Discover
+→ Affiliate earnings
+→ Community
+→ Post content
+→ Creator unlock
+```
+
+---
+
+## 13️⃣ What NOT to Prototype Early (Important)
+
+❌ Advanced analytics
+❌ Settings-heavy screens
+❌ Role dashboards
+❌ Empty states without guidance
+
+Focus on:
+
+* first value
+* first share
+* first earning
+
+---
+
+## 14️⃣ Wireframe Validation Checklist
+
+Every wireframe must answer:
+
+1. What can I do here?
+2. Why should I do it?
+3. What do I get if I do it?
+4. What happens next?
+
+If any answer is unclear → redesign.
+
+---
+
+## 🧠 Final Wireframe Philosophy (Lock This)
+
+> **HeyBirdy wireframes should feel like a social app first —
+> and a business platform only after success.**
+
+That’s what keeps first-time users alive.
+
+---
+
+### 🔜 Next (Recommended)
+
+I can:
+
+* Turn this into **Figma page structure**
+* Create **mobile-first wireframes**
+* Write **exact UI copy for each screen**
+* Define **prototype success metrics**
+* Do a **UX teardown simulation**
+
+Tell me what you want next 👍
